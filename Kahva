@@ -1,708 +1,430 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="bs">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>Kahva ☕</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<title>Kahva sa Sanelom ☕️</title>
 
 <style>
+*{box-sizing:border-box}
 
-* {
-    box-sizing: border-box;
+html,body{
+    margin:0;
+    width:100%;
+    height:100%;
+    overflow:hidden;
 }
 
-body {
-    margin: 0;
-    min-height: 100vh;
-    overflow: hidden;
-
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-    font-family:
-        -apple-system,
-        BlinkMacSystemFont,
-        "SF Pro Display",
-        "Segoe UI",
-        sans-serif;
-
-    color: white;
-
+body{
+    font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display","Segoe UI",sans-serif;
+    color:#fff;
     background:
         radial-gradient(
-            circle at 50% 30%,
-            #39456f 0%,
-            #202a4d 45%,
-            #0d132b 100%
+            circle at 50% 25%,
+            #52648d,
+            #273555 42%,
+            #0a1025 90%
         );
+    display:flex;
+    align-items:center;
+    justify-content:center;
+}
+
+/* ZVIJEZDE */
+
+#sky{
+    position:fixed;
+    inset:0;
+}
+
+.star{
+    position:absolute;
+    width:3px;
+    height:3px;
+    border-radius:50%;
+    background:#fff;
+    box-shadow:0 0 8px #fff;
+    animation:twinkle 3s ease-in-out infinite;
+}
+
+@keyframes twinkle{
+    0%,100%{
+        opacity:.15;
+        transform:scale(.6);
+    }
+
+    50%{
+        opacity:1;
+        transform:scale(1.7);
+    }
 }
 
 
-/* =========================
-   ZVIJEZDE
-========================= */
+/* MJESEC */
 
-.star {
-    position: fixed;
+.moon{
+    position:absolute;
+    width:125px;
+    height:125px;
+    border-radius:50%;
+    right:-35px;
+    top:7%;
 
-    width: 3px;
-    height: 3px;
+    background:#fff1b4;
 
-    background: white;
-
-    border-radius: 50%;
-
-    opacity: .35;
+    box-shadow:
+        0 0 45px rgba(255,239,170,.65);
 
     animation:
-        twinkle 3s ease-in-out infinite;
+        moon 4s cubic-bezier(.2,.8,.2,1) forwards;
 }
 
-.star:nth-child(1) {
-    left: 10%;
-    top: 15%;
-    animation-delay: .2s;
+.moon:after{
+    content:"";
+
+    position:absolute;
+
+    width:125px;
+    height:125px;
+
+    border-radius:50%;
+
+    left:35px;
+    top:-12px;
+
+    background:#182241;
 }
 
-.star:nth-child(2) {
-    left: 25%;
-    top: 25%;
-    animation-delay: 1s;
-}
+@keyframes moon{
 
-.star:nth-child(3) {
-    left: 75%;
-    top: 18%;
-    animation-delay: .5s;
-}
+    from{
+        transform:
+            translate(100px,90px);
 
-.star:nth-child(4) {
-    left: 88%;
-    top: 35%;
-    animation-delay: 1.5s;
-}
-
-.star:nth-child(5) {
-    left: 15%;
-    top: 70%;
-    animation-delay: .8s;
-}
-
-.star:nth-child(6) {
-    left: 82%;
-    top: 75%;
-    animation-delay: 1.8s;
-}
-
-@keyframes twinkle {
-
-    0%,100% {
-        opacity: .2;
-        transform: scale(.7);
+        opacity:0;
     }
 
-    50% {
-        opacity: 1;
-        transform: scale(1.5);
+    to{
+        transform:
+            translate(-28px,0);
+
+        opacity:1;
     }
 }
 
 
-/* =========================
-   GLAVNA KARTICA
-========================= */
+/* GLAVNA KARTICA */
 
-.card {
+.card{
+    position:relative;
+    z-index:5;
 
-    width: min(90%, 430px);
+    width:min(91vw,440px);
 
-    padding: 45px 25px;
+    padding:34px 24px 30px;
 
-    text-align: center;
+    text-align:center;
 
-    border-radius: 30px;
+    border-radius:34px;
 
     background:
-        rgba(255,255,255,.08);
-
-    backdrop-filter:
-        blur(18px);
+        rgba(8,14,34,.42);
 
     border:
-        1px solid rgba(255,255,255,.12);
+        1px solid rgba(255,255,255,.14);
+
+    backdrop-filter:blur(20px);
+
+    box-shadow:
+        0 25px 80px rgba(0,0,0,.3);
 
     animation:
-        appear 1.2s ease-out;
+        cardIn 1s ease-out;
 }
 
-@keyframes appear {
+@keyframes cardIn{
 
-    from {
-        opacity: 0;
-        transform: translateY(25px);
+    from{
+        opacity:0;
+        transform:
+            translateY(25px)
+            scale(.96);
     }
 
-    to {
-        opacity: 1;
-        transform: translateY(0);
+    to{
+        opacity:1;
+        transform:none;
     }
 }
 
 
-/* =========================
-   KAHVA
-========================= */
+/* KAHVA */
 
-.coffee {
+.coffee{
+    height:130px;
 
-    position: relative;
+    position:relative;
 
-    width: 120px;
-    height: 90px;
-
-    margin:
-        0 auto 35px;
-
-    opacity: 0;
-
-    animation:
-        coffeeAppear 1s ease-out
-        .4s forwards;
+    margin-bottom:4px;
 }
 
-.cup {
+.cup{
 
-    position: absolute;
+    position:absolute;
 
-    left: 15px;
-    bottom: 0;
+    left:50%;
+    bottom:5px;
 
-    width: 90px;
-    height: 60px;
+    transform:
+        translateX(-50%);
+
+    width:110px;
+    height:70px;
+
+    border-radius:
+        12px 12px 42px 42px;
 
     background:
         linear-gradient(
-            180deg,
-            #f2d3ad,
-            #c89061
+            #f5d7b0,
+            #bd8051
         );
 
-    border-radius:
-        10px 10px 35px 35px;
-
     box-shadow:
-        0 10px 25px rgba(0,0,0,.25);
-}
-
-.coffee-top {
-
-    position: absolute;
-
-    left: 15px;
-    top: 0;
-
-    width: 90px;
-    height: 24px;
-
-    background: #6b4228;
-
-    border-radius: 50%;
-
-    box-shadow:
-        inset 0 4px 8px rgba(255,255,255,.12);
-}
-
-.handle {
-
-    position: absolute;
-
-    right: 0;
-    top: 22px;
-
-    width: 35px;
-    height: 35px;
-
-    border:
-        8px solid #d2a176;
-
-    border-left:
-        0;
-
-    border-radius:
-        0 20px 20px 0;
-}
-
-.steam {
-
-    position: absolute;
-
-    bottom: 62px;
-
-    width: 4px;
-    height: 35px;
-
-    border-radius: 50%;
-
-    background:
-        rgba(255,255,255,.4);
-
-    filter: blur(2px);
+        0 15px 28px rgba(0,0,0,.28);
 
     animation:
-        steam 2.5s ease-in-out infinite;
+        cup 1s .4s both;
 }
 
-.steam.one {
-    left: 38px;
+.cup:before{
+
+    content:"";
+
+    position:absolute;
+
+    left:0;
+    top:-9px;
+
+    width:110px;
+    height:28px;
+
+    border-radius:50%;
+
+    background:#593620;
 }
 
-.steam.two {
-    left: 58px;
-    animation-delay: .8s;
+.handle{
+
+    position:absolute;
+
+    right:-31px;
+    top:16px;
+
+    width:40px;
+    height:43px;
+
+    border:
+        9px solid #d5a178;
+
+    border-left:0;
+
+    border-radius:
+        0 25px 25px 0;
 }
 
-.steam.three {
-    left: 75px;
-    animation-delay: 1.4s;
+.steam{
+
+    position:absolute;
+
+    bottom:68px;
+
+    width:5px;
+    height:48px;
+
+    border-radius:50%;
+
+    background:
+        rgba(255,255,255,.38);
+
+    filter:blur(2px);
+
+    animation:
+        steam 2.6s ease-in-out infinite;
 }
 
-@keyframes steam {
+.s1{
+    left:calc(50% - 34px);
+}
 
-    0% {
+.s2{
+    left:50%;
+    animation-delay:.7s;
+}
+
+.s3{
+    left:calc(50% + 27px);
+    animation-delay:1.4s;
+}
+
+@keyframes steam{
+
+    0%{
         transform:
             translateY(10px)
-            scale(.8);
+            scale(.7);
 
-        opacity: 0;
+        opacity:0;
     }
 
-    40% {
-        opacity: .6;
+    35%{
+        opacity:.65;
     }
 
-    100% {
+    100%{
         transform:
-            translateY(-25px)
+            translateY(-34px)
             scale(1.4);
 
-        opacity: 0;
+        opacity:0;
     }
 }
 
-@keyframes coffeeAppear {
+@keyframes cup{
 
-    from {
-        opacity: 0;
+    from{
+        opacity:0;
+
         transform:
-            translateY(20px)
-            scale(.8);
+            translateX(-50%)
+            translateY(25px)
+            scale(.75);
     }
 
-    to {
-        opacity: 1;
+    to{
+        opacity:1;
+
         transform:
+            translateX(-50%)
             translateY(0)
             scale(1);
     }
 }
 
 
-/* =========================
-   TEKST
-========================= */
+/* UVOD */
 
-.question {
+.intro{
 
-    min-height: 110px;
+    font-size:17px;
 
-    font-size:
-        clamp(27px, 7vw, 40px);
+    color:
+        rgba(255,255,255,.7);
 
-    line-height: 1.2;
+    letter-spacing:1px;
 
-    font-weight: 650;
-
-    letter-spacing: -1px;
-}
-
-
-/* pojedinačna slova */
-
-.letter {
-
-    display: inline-block;
-
-    opacity: 0;
-
-    transform:
-        translateY(15px);
+    opacity:0;
 
     animation:
-        letterIn .45s ease forwards;
+        fade 1s 1.6s forwards;
 }
 
-@keyframes letterIn {
 
-    to {
-        opacity: 1;
+/* IME */
+
+.name{
+
+    font-size:
+        clamp(40px,10vw,56px);
+
+    font-weight:700;
+
+    letter-spacing:-2px;
+
+    margin:
+        5px 0 15px;
+
+    opacity:0;
+
+    animation:
+        up 1s 1.9s forwards,
+        glow 3s 3s ease-in-out infinite;
+}
+
+@keyframes fade{
+
+    to{
+        opacity:1;
+    }
+}
+
+@keyframes up{
+
+    from{
+        opacity:0;
+        transform:
+            translateY(15px);
+    }
+
+    to{
+        opacity:1;
+        transform:none;
+    }
+}
+
+@keyframes glow{
+
+    0%,100%{
+        text-shadow:
+            0 0 0
+            rgba(255,239,180,0);
+    }
+
+    50%{
+        text-shadow:
+            0 0 25px
+            rgba(255,239,180,.75);
+    }
+}
+
+
+/* PITANJE */
+
+.question{
+
+    font-size:
+        clamp(25px,6.5vw,35px);
+
+    line-height:1.25;
+
+    font-weight:650;
+
+    min-height:92px;
+
+    margin-top:5px;
+}
+
+
+/* POJAVLJIVANJE SLOVA */
+
+.letter{
+
+    display:inline-block;
+
+    opacity:0;
+
+    transform:
+        translateY(14px);
+
+    animation:
+        letter .42s ease forwards;
+}
+
+@keyframes letter{
+
+    to{
+        opacity:1;
 
         transform:
             translateY(0);
-    }
-}
-
-
-/* =========================
-   DUGMAD
-========================= */
-
-.buttons {
-
-    position: relative;
-
-    height: 90px;
-
-    margin-top: 15px;
-}
-
-button {
-
-    border: none;
-
-    font-family: inherit;
-
-    font-size: 18px;
-
-    font-weight: 600;
-
-    padding:
-        14px 28px;
-
-    border-radius: 50px;
-
-    cursor: pointer;
-
-    transition:
-        transform .25s ease;
-}
-
-.yes {
-
-    background:
-        rgba(255,255,255,.95);
-
-    color:
-        #202a4d;
-
-    box-shadow:
-        0 8px 25px rgba(0,0,0,.2);
-}
-
-.yes:hover {
-
-    transform:
-        scale(1.07);
-}
-
-
-/* NE */
-
-.no {
-
-    position: absolute;
-
-    left: 58%;
-
-    top: 0;
-
-    background:
-        rgba(255,255,255,.12);
-
-    color: white;
-
-    border:
-        1px solid
-        rgba(255,255,255,.2);
-
-    transition:
-        left .18s ease,
-        top .18s ease;
-}
-
-
-/* =========================
-   ODGOVOR
-========================= */
-
-.answer {
-
-    margin-top: 20px;
-
-    min-height: 35px;
-
-    font-size: 20px;
-
-    opacity: 0;
-
-    transform:
-        translateY(10px);
-
-    transition:
-        .5s ease;
-}
-
-.answer.show {
-
-    opacity: 1;
-
-    transform:
-        translateY(0);
-}
-
-</style>
-
-</head>
-
-
-<body>
-
-
-<!-- ZVIJEZDE -->
-
-<div class="star"></div>
-<div class="star"></div>
-<div class="star"></div>
-<div class="star"></div>
-<div class="star"></div>
-<div class="star"></div>
-
-
-<div class="card">
-
-
-    <!-- KAHVA -->
-
-    <div class="coffee">
-
-        <div class="steam one"></div>
-        <div class="steam two"></div>
-        <div class="steam three"></div>
-
-        <div class="cup"></div>
-
-        <div class="coffee-top"></div>
-
-        <div class="handle"></div>
-
-    </div>
-
-
-    <!-- PITANJE -->
-
-    <div
-        id="question"
-        class="question">
-    </div>
-
-
-    <!-- DUGMAD -->
-
-    <div class="buttons">
-
-        <button
-            id="yes"
-            class="yes">
-
-            Da ☺️
-
-        </button>
-
-
-        <button
-            id="no"
-            class="no">
-
-            Ne 😅
-
-        </button>
-
-    </div>
-
-
-    <!-- ODGOVOR -->
-
-    <div
-        id="answer"
-        class="answer">
-
-    </div>
-
-
-</div>
-
-
-<script>
-
-
-/* =========================
-   ANIMACIJA SLOVA
-========================= */
-
-const text =
-    "Hoćemo na kahvu sljedeće sedmice?";
-
-
-const question =
-    document.getElementById(
-        "question"
-    );
-
-
-[...text].forEach(
-    (character, index) => {
-
-        const span =
-            document.createElement(
-                "span"
-            );
-
-        span.className =
-            "letter";
-
-        span.textContent =
-            character === " "
-                ? "\u00A0"
-                : character;
-
-        span.style.animationDelay =
-            (1.4 + index * .07)
-            + "s";
-
-        question.appendChild(
-            span
-        );
-
-    }
-);
-
-
-/* =========================
-   DA
-========================= */
-
-const yes =
-    document.getElementById(
-        "yes"
-    );
-
-const answer =
-    document.getElementById(
-        "answer"
-    );
-
-
-yes.addEventListener(
-    "click",
-    () => {
-
-        answer.textContent =
-            "Znao sam 😄☕";
-
-        answer.classList.add(
-            "show"
-        );
-
-        yes.style.transform =
-            "scale(1.08)";
-
-    }
-);
-
-
-/* =========================
-   NE - BJEŽI 😂
-========================= */
-
-const no =
-    document.getElementById(
-        "no"
-    );
-
-
-function moveNo() {
-
-    const buttons =
-        document.querySelector(
-            ".buttons"
-        );
-
-    const maxX =
-        buttons.clientWidth
-        - no.offsetWidth;
-
-    const maxY =
-        buttons.clientHeight
-        - no.offsetHeight;
-
-    const x =
-        Math.random()
-        * maxX;
-
-    const y =
-        Math.random()
-        * maxY;
-
-    no.style.left =
-        x + "px";
-
-    no.style.top =
-        y + "px";
-
-}
-
-
-/* miš */
-
-no.addEventListener(
-    "mouseenter",
-    moveNo
-);
-
-
-/* dodir na telefonu */
-
-no.addEventListener(
-    "touchstart",
-    function(event) {
-
-        event.preventDefault();
-
-        moveNo();
-
-    },
-    {
-        passive: false
-    }
-);
-
-
-/* ako ipak nekako dođe do klika */
-
-no.addEventListener(
-    "click",
-    function(event) {
-
-        event.preventDefault();
-
-        moveNo();
-
-    }
-);
-
-</script>
-
-
-</body>
-</html>
