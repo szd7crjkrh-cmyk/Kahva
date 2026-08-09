@@ -428,3 +428,576 @@ body{
 
         transform:
             translateY(0);
+    }
+}
+
+
+/* DUGMAD */
+
+.buttons{
+
+    position:relative;
+
+    height:82px;
+
+    margin-top:5px;
+
+    opacity:0;
+
+    animation:
+        fade 1s 4.4s forwards;
+}
+
+button{
+
+    font:inherit;
+
+    font-size:18px;
+
+    font-weight:650;
+
+    border:0;
+
+    border-radius:999px;
+
+    padding:
+        13px 27px;
+
+    cursor:pointer;
+}
+
+
+/* DA */
+
+.yes{
+
+    background:#fff;
+
+    color:#263555;
+
+    box-shadow:
+        0 9px 25px
+        rgba(0,0,0,.22);
+
+    transition:
+        transform .2s;
+}
+
+.yes:hover{
+
+    transform:
+        scale(1.07);
+}
+
+
+/* NE */
+
+.no{
+
+    position:absolute;
+
+    left:59%;
+    top:2px;
+
+    background:
+        rgba(255,255,255,.11);
+
+    color:#fff;
+
+    border:
+        1px solid
+        rgba(255,255,255,.2);
+
+    transition:
+        left .17s ease,
+        top .17s ease;
+}
+
+
+/* STATUS */
+
+.status{
+
+    min-height:22px;
+
+    margin-top:4px;
+
+    font-size:14px;
+
+    color:
+        rgba(255,255,255,.55);
+}
+
+
+/* REZULTAT */
+
+.result{
+
+    display:none;
+}
+
+.result.show{
+
+    display:block;
+
+    animation:
+        result .8s ease;
+}
+
+@keyframes result{
+
+    from{
+        opacity:0;
+        transform:
+            scale(.85);
+    }
+
+    to{
+        opacity:1;
+        transform:
+            scale(1);
+    }
+}
+
+.result .cupbig{
+
+    font-size:66px;
+
+    animation:
+        bounce 1.5s
+        ease-in-out infinite;
+}
+
+@keyframes bounce{
+
+    50%{
+        transform:
+            translateY(-9px);
+    }
+}
+
+.result h2{
+
+    font-size:35px;
+
+    margin:
+        8px 0;
+}
+
+.result p{
+
+    font-size:20px;
+
+    line-height:1.5;
+
+    color:
+        rgba(255,255,255,.9);
+}
+
+</style>
+</head>
+
+
+<body>
+
+
+<div id="sky"></div>
+
+<div class="moon"></div>
+
+
+<div class="card">
+
+
+    <div id="main">
+
+
+        <!-- KAHVA -->
+
+        <div class="coffee">
+
+            <div class="steam s1"></div>
+            <div class="steam s2"></div>
+            <div class="steam s3"></div>
+
+            <div class="cup">
+
+                <div class="handle"></div>
+
+            </div>
+
+        </div>
+
+
+        <!-- UVOD -->
+
+        <div class="intro">
+
+            imam jedno malo pitanje ☺️
+
+        </div>
+
+
+        <!-- IME -->
+
+        <div class="name">
+
+            Sanela
+
+        </div>
+
+
+        <!-- PITANJE -->
+
+        <div
+            id="question"
+            class="question">
+        </div>
+
+
+        <!-- DUGMAD -->
+
+        <div class="buttons">
+
+            <button
+                id="yes"
+                class="yes"
+                type="button">
+
+                Da ☺️
+
+            </button>
+
+
+            <button
+                id="no"
+                class="no"
+                type="button">
+
+                Ne 😅
+
+            </button>
+
+        </div>
+
+
+        <div
+            id="status"
+            class="status">
+        </div>
+
+
+    </div>
+
+
+    <!-- NAKON DA -->
+
+    <div
+        id="result"
+        class="result">
+
+        <div class="cupbig">
+
+            ☕️
+
+        </div>
+
+
+        <h2>
+
+            Dogovoreno! 😊
+
+        </h2>
+
+
+        <p>
+
+            Sljedeće sedmice —
+            kahva.
+
+        </p>
+
+
+        <div class="status">
+
+            Poruka je poslana ☺️
+
+        </div>
+
+    </div>
+
+
+</div>
+
+
+<script>
+
+
+/* =========================
+   ZVIJEZDE
+========================= */
+
+const sky =
+    document.getElementById(
+        "sky"
+    );
+
+
+for(let i=0;i<55;i++){
+
+    const s =
+        document.createElement(
+            "span"
+        );
+
+    s.className =
+        "star";
+
+    s.style.left =
+        Math.random()*100
+        + "%";
+
+    s.style.top =
+        Math.random()*82
+        + "%";
+
+    s.style.animationDelay =
+        -Math.random()*4
+        + "s";
+
+    s.style.animationDuration =
+        2 + Math.random()*3
+        + "s";
+
+    sky.appendChild(s);
+
+}
+
+
+/* =========================
+   PITANJE SLOVO PO SLOVO
+========================= */
+
+const text =
+    "Hoćemo na kahvu sljedeće sedmice?";
+
+
+const question =
+    document.getElementById(
+        "question"
+    );
+
+
+[...text].forEach(
+    (character,index)=>{
+
+        const span =
+            document.createElement(
+                "span"
+            );
+
+        span.className =
+            "letter";
+
+        span.textContent =
+            character === " "
+                ? "\u00a0"
+                : character;
+
+        span.style.animationDelay =
+            2.65 +
+            index * .065 +
+            "s";
+
+        question.appendChild(
+            span
+        );
+
+    }
+);
+
+
+/* =========================
+   NE BJEŽI
+========================= */
+
+const no =
+    document.getElementById(
+        "no"
+    );
+
+const area =
+    document.querySelector(
+        ".buttons"
+    );
+
+
+function moveNo(){
+
+    const maxX =
+        Math.max(
+            1,
+            area.clientWidth -
+            no.offsetWidth
+        );
+
+    const maxY =
+        Math.max(
+            1,
+            area.clientHeight -
+            no.offsetHeight
+        );
+
+    const x =
+        Math.random()*maxX;
+
+    const y =
+        Math.random()*maxY;
+
+    no.style.left =
+        x + "px";
+
+    no.style.top =
+        y + "px";
+}
+
+
+no.addEventListener(
+    "mouseenter",
+    moveNo
+);
+
+
+no.addEventListener(
+    "touchstart",
+    function(event){
+
+        event.preventDefault();
+
+        moveNo();
+
+    },
+    {
+        passive:false
+    }
+);
+
+
+/* =========================
+   DA
+========================= */
+
+const yes =
+    document.getElementById(
+        "yes"
+    );
+
+const status =
+    document.getElementById(
+        "status"
+    );
+
+const main =
+    document.getElementById(
+        "main"
+    );
+
+const result =
+    document.getElementById(
+        "result"
+    );
+
+
+yes.addEventListener(
+    "click",
+    async function(){
+
+        yes.disabled =
+            true;
+
+        status.textContent =
+            "Samo trenutak ☕️";
+
+
+        /*
+          Šalje obavijest na
+          barcic@me.com
+        */
+
+        const data =
+            new FormData();
+
+
+        data.append(
+            "_subject",
+            "Sanela je rekla DA ☕️😊"
+        );
+
+        data.append(
+            "odgovor",
+            "DA — Hoćemo na kahvu sljedeće sedmice?"
+        );
+
+        data.append(
+            "_captcha",
+            "false"
+        );
+
+        data.append(
+            "_template",
+            "table"
+        );
+
+
+        try{
+
+            const response =
+                await fetch(
+                    "https://formsubmit.co/ajax/barcic@me.com",
+                    {
+                        method:"POST",
+
+                        headers:{
+                            Accept:
+                                "application/json"
+                        },
+
+                        body:data
+                    }
+                );
+
+
+            if(!response.ok){
+
+                throw new Error(
+                    "Mail nije poslan"
+                );
+
+            }
+
+
+            main.style.display =
+                "none";
+
+            result.classList.add(
+                "show"
+            );
+
+
+        }catch(error){
+
+            yes.disabled =
+                false;
+
+            status.textContent =
+                "Nije poslano — pokušaj ponovo ☺️";
+
+        }
+
+    }
+);
+
+</script>
+
+</body>
+</html>
