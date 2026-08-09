@@ -1,0 +1,708 @@
+<!DOCTYPE html>
+<html lang="bs">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Kahva ☕</title>
+
+<style>
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    min-height: 100vh;
+    overflow: hidden;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    font-family:
+        -apple-system,
+        BlinkMacSystemFont,
+        "SF Pro Display",
+        "Segoe UI",
+        sans-serif;
+
+    color: white;
+
+    background:
+        radial-gradient(
+            circle at 50% 30%,
+            #39456f 0%,
+            #202a4d 45%,
+            #0d132b 100%
+        );
+}
+
+
+/* =========================
+   ZVIJEZDE
+========================= */
+
+.star {
+    position: fixed;
+
+    width: 3px;
+    height: 3px;
+
+    background: white;
+
+    border-radius: 50%;
+
+    opacity: .35;
+
+    animation:
+        twinkle 3s ease-in-out infinite;
+}
+
+.star:nth-child(1) {
+    left: 10%;
+    top: 15%;
+    animation-delay: .2s;
+}
+
+.star:nth-child(2) {
+    left: 25%;
+    top: 25%;
+    animation-delay: 1s;
+}
+
+.star:nth-child(3) {
+    left: 75%;
+    top: 18%;
+    animation-delay: .5s;
+}
+
+.star:nth-child(4) {
+    left: 88%;
+    top: 35%;
+    animation-delay: 1.5s;
+}
+
+.star:nth-child(5) {
+    left: 15%;
+    top: 70%;
+    animation-delay: .8s;
+}
+
+.star:nth-child(6) {
+    left: 82%;
+    top: 75%;
+    animation-delay: 1.8s;
+}
+
+@keyframes twinkle {
+
+    0%,100% {
+        opacity: .2;
+        transform: scale(.7);
+    }
+
+    50% {
+        opacity: 1;
+        transform: scale(1.5);
+    }
+}
+
+
+/* =========================
+   GLAVNA KARTICA
+========================= */
+
+.card {
+
+    width: min(90%, 430px);
+
+    padding: 45px 25px;
+
+    text-align: center;
+
+    border-radius: 30px;
+
+    background:
+        rgba(255,255,255,.08);
+
+    backdrop-filter:
+        blur(18px);
+
+    border:
+        1px solid rgba(255,255,255,.12);
+
+    animation:
+        appear 1.2s ease-out;
+}
+
+@keyframes appear {
+
+    from {
+        opacity: 0;
+        transform: translateY(25px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+
+/* =========================
+   KAHVA
+========================= */
+
+.coffee {
+
+    position: relative;
+
+    width: 120px;
+    height: 90px;
+
+    margin:
+        0 auto 35px;
+
+    opacity: 0;
+
+    animation:
+        coffeeAppear 1s ease-out
+        .4s forwards;
+}
+
+.cup {
+
+    position: absolute;
+
+    left: 15px;
+    bottom: 0;
+
+    width: 90px;
+    height: 60px;
+
+    background:
+        linear-gradient(
+            180deg,
+            #f2d3ad,
+            #c89061
+        );
+
+    border-radius:
+        10px 10px 35px 35px;
+
+    box-shadow:
+        0 10px 25px rgba(0,0,0,.25);
+}
+
+.coffee-top {
+
+    position: absolute;
+
+    left: 15px;
+    top: 0;
+
+    width: 90px;
+    height: 24px;
+
+    background: #6b4228;
+
+    border-radius: 50%;
+
+    box-shadow:
+        inset 0 4px 8px rgba(255,255,255,.12);
+}
+
+.handle {
+
+    position: absolute;
+
+    right: 0;
+    top: 22px;
+
+    width: 35px;
+    height: 35px;
+
+    border:
+        8px solid #d2a176;
+
+    border-left:
+        0;
+
+    border-radius:
+        0 20px 20px 0;
+}
+
+.steam {
+
+    position: absolute;
+
+    bottom: 62px;
+
+    width: 4px;
+    height: 35px;
+
+    border-radius: 50%;
+
+    background:
+        rgba(255,255,255,.4);
+
+    filter: blur(2px);
+
+    animation:
+        steam 2.5s ease-in-out infinite;
+}
+
+.steam.one {
+    left: 38px;
+}
+
+.steam.two {
+    left: 58px;
+    animation-delay: .8s;
+}
+
+.steam.three {
+    left: 75px;
+    animation-delay: 1.4s;
+}
+
+@keyframes steam {
+
+    0% {
+        transform:
+            translateY(10px)
+            scale(.8);
+
+        opacity: 0;
+    }
+
+    40% {
+        opacity: .6;
+    }
+
+    100% {
+        transform:
+            translateY(-25px)
+            scale(1.4);
+
+        opacity: 0;
+    }
+}
+
+@keyframes coffeeAppear {
+
+    from {
+        opacity: 0;
+        transform:
+            translateY(20px)
+            scale(.8);
+    }
+
+    to {
+        opacity: 1;
+        transform:
+            translateY(0)
+            scale(1);
+    }
+}
+
+
+/* =========================
+   TEKST
+========================= */
+
+.question {
+
+    min-height: 110px;
+
+    font-size:
+        clamp(27px, 7vw, 40px);
+
+    line-height: 1.2;
+
+    font-weight: 650;
+
+    letter-spacing: -1px;
+}
+
+
+/* pojedinačna slova */
+
+.letter {
+
+    display: inline-block;
+
+    opacity: 0;
+
+    transform:
+        translateY(15px);
+
+    animation:
+        letterIn .45s ease forwards;
+}
+
+@keyframes letterIn {
+
+    to {
+        opacity: 1;
+
+        transform:
+            translateY(0);
+    }
+}
+
+
+/* =========================
+   DUGMAD
+========================= */
+
+.buttons {
+
+    position: relative;
+
+    height: 90px;
+
+    margin-top: 15px;
+}
+
+button {
+
+    border: none;
+
+    font-family: inherit;
+
+    font-size: 18px;
+
+    font-weight: 600;
+
+    padding:
+        14px 28px;
+
+    border-radius: 50px;
+
+    cursor: pointer;
+
+    transition:
+        transform .25s ease;
+}
+
+.yes {
+
+    background:
+        rgba(255,255,255,.95);
+
+    color:
+        #202a4d;
+
+    box-shadow:
+        0 8px 25px rgba(0,0,0,.2);
+}
+
+.yes:hover {
+
+    transform:
+        scale(1.07);
+}
+
+
+/* NE */
+
+.no {
+
+    position: absolute;
+
+    left: 58%;
+
+    top: 0;
+
+    background:
+        rgba(255,255,255,.12);
+
+    color: white;
+
+    border:
+        1px solid
+        rgba(255,255,255,.2);
+
+    transition:
+        left .18s ease,
+        top .18s ease;
+}
+
+
+/* =========================
+   ODGOVOR
+========================= */
+
+.answer {
+
+    margin-top: 20px;
+
+    min-height: 35px;
+
+    font-size: 20px;
+
+    opacity: 0;
+
+    transform:
+        translateY(10px);
+
+    transition:
+        .5s ease;
+}
+
+.answer.show {
+
+    opacity: 1;
+
+    transform:
+        translateY(0);
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<!-- ZVIJEZDE -->
+
+<div class="star"></div>
+<div class="star"></div>
+<div class="star"></div>
+<div class="star"></div>
+<div class="star"></div>
+<div class="star"></div>
+
+
+<div class="card">
+
+
+    <!-- KAHVA -->
+
+    <div class="coffee">
+
+        <div class="steam one"></div>
+        <div class="steam two"></div>
+        <div class="steam three"></div>
+
+        <div class="cup"></div>
+
+        <div class="coffee-top"></div>
+
+        <div class="handle"></div>
+
+    </div>
+
+
+    <!-- PITANJE -->
+
+    <div
+        id="question"
+        class="question">
+    </div>
+
+
+    <!-- DUGMAD -->
+
+    <div class="buttons">
+
+        <button
+            id="yes"
+            class="yes">
+
+            Da ☺️
+
+        </button>
+
+
+        <button
+            id="no"
+            class="no">
+
+            Ne 😅
+
+        </button>
+
+    </div>
+
+
+    <!-- ODGOVOR -->
+
+    <div
+        id="answer"
+        class="answer">
+
+    </div>
+
+
+</div>
+
+
+<script>
+
+
+/* =========================
+   ANIMACIJA SLOVA
+========================= */
+
+const text =
+    "Hoćemo na kahvu sljedeće sedmice?";
+
+
+const question =
+    document.getElementById(
+        "question"
+    );
+
+
+[...text].forEach(
+    (character, index) => {
+
+        const span =
+            document.createElement(
+                "span"
+            );
+
+        span.className =
+            "letter";
+
+        span.textContent =
+            character === " "
+                ? "\u00A0"
+                : character;
+
+        span.style.animationDelay =
+            (1.4 + index * .07)
+            + "s";
+
+        question.appendChild(
+            span
+        );
+
+    }
+);
+
+
+/* =========================
+   DA
+========================= */
+
+const yes =
+    document.getElementById(
+        "yes"
+    );
+
+const answer =
+    document.getElementById(
+        "answer"
+    );
+
+
+yes.addEventListener(
+    "click",
+    () => {
+
+        answer.textContent =
+            "Znao sam 😄☕";
+
+        answer.classList.add(
+            "show"
+        );
+
+        yes.style.transform =
+            "scale(1.08)";
+
+    }
+);
+
+
+/* =========================
+   NE - BJEŽI 😂
+========================= */
+
+const no =
+    document.getElementById(
+        "no"
+    );
+
+
+function moveNo() {
+
+    const buttons =
+        document.querySelector(
+            ".buttons"
+        );
+
+    const maxX =
+        buttons.clientWidth
+        - no.offsetWidth;
+
+    const maxY =
+        buttons.clientHeight
+        - no.offsetHeight;
+
+    const x =
+        Math.random()
+        * maxX;
+
+    const y =
+        Math.random()
+        * maxY;
+
+    no.style.left =
+        x + "px";
+
+    no.style.top =
+        y + "px";
+
+}
+
+
+/* miš */
+
+no.addEventListener(
+    "mouseenter",
+    moveNo
+);
+
+
+/* dodir na telefonu */
+
+no.addEventListener(
+    "touchstart",
+    function(event) {
+
+        event.preventDefault();
+
+        moveNo();
+
+    },
+    {
+        passive: false
+    }
+);
+
+
+/* ako ipak nekako dođe do klika */
+
+no.addEventListener(
+    "click",
+    function(event) {
+
+        event.preventDefault();
+
+        moveNo();
+
+    }
+);
+
+</script>
+
+
+</body>
+</html>
